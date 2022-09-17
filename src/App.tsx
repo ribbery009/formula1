@@ -1,16 +1,17 @@
 import './App.css';
-import axios from 'axios';
-import { Dashboard } from './app/page/Dashboard';
-import { QueryResponseDriversProvider } from './app/components/core/QueryResponseProvider';
-function App() {
+import { Dashboard } from './app/modules/drivers/page/Dashboard';
+import { QueryResponseDriversProvider } from './app/modules/drivers/core/QueryResponseProvider';
+import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+import { Loading } from './app/modules/drivers/components/loading/loading';
+const App = () => {
 
-  
+
   return (
-    <QueryResponseDriversProvider>
-      <Dashboard />
-    </QueryResponseDriversProvider>
-
+      <QueryResponseDriversProvider>
+        <Outlet />
+      </QueryResponseDriversProvider>
   );
 }
 
-export default App;
+export {App};

@@ -8,11 +8,11 @@ import {
     DropResult,
     NotDraggingStyle
 } from "react-beautiful-dnd";
-import { toAbsoluteUrl } from "../../_formula1Page/helpers"
-import { DriverModel } from "../components/core/_model";
+import { toAbsoluteUrl } from "../../../../_formula1Page/helpers"
+import { DriverModel } from "../core/_model";
 import ReactCountryFlag from "react-country-flag"
-import { useQueryResponseDrivers, useQueryResponseDriversData, useQueryResponseDriversLoading } from "../components/core/QueryResponseProvider";
-import { overtake } from "../components/core/_requests";
+import { useQueryResponseDrivers, useQueryResponseDriversData, useQueryResponseDriversLoading } from "../core/QueryResponseProvider";
+import { overtake } from "../core/_requests";
 import { Loading } from "../components/loading/loading";
 
 // a little function to help us with reordering the result
@@ -67,8 +67,10 @@ export function Dashboard(): JSX.Element {
             result.destination.index
         );
 
-        const data = await overtake(Number(result.draggableId), result.source.index, result.destination.index);
-        console.log("data: ", data)
+        const resp = await overtake(Number(result.draggableId), result.source.index, result.destination.index);
+        console.log("response: ", resp)
+
+        //Update drivers query
         queryClient.invalidateQueries([`${query}`])
 
     };
@@ -77,6 +79,8 @@ export function Dashboard(): JSX.Element {
     // But in this example everything is just done in one place for simplicity
     return (
         <>
+
+            {(!driversLoading && drivers.length == 0) && "Please try again later..."}
             {driversLoading && <Loading />}
             {!driversLoading &&
                 <DragDropContext onDragEnd={onDragEnd}>
@@ -137,3 +141,4 @@ export function Dashboard(): JSX.Element {
         </>
     );
 };
+export default { Dashboard }

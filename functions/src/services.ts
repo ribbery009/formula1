@@ -1,7 +1,9 @@
-import { Driver, DriverModel } from "./dataExamples";
-
+import { Driver, DriverModel } from "./_model";
 const fs = require('fs');
 
+
+
+//Random numbers generator
 export function Myrand(max: number, min: number) {
     const arr: number[] = []
     for (let i = 0; i < max; i++) {
@@ -17,7 +19,7 @@ export function Myrand(max: number, min: number) {
     return arr;
 }
 
-const dataPath = './drivers.json'
+const dataPath = './tmp/drivers.json'
 
 //get drivers from local json file
 export function getDriversData() {
@@ -33,18 +35,15 @@ export function initDriversData(data: Array<DriverModel>) {
 }
 
 //save drivers to local json file
-export function updateDriversData(from:number,to:number) {
-    
+export function updateDriversData(from: number, to: number) {
     const data = getDriversData();
-    
-     const newArray = arrayMove(data, from, to)
-     const stringifyData = JSON.stringify(newArray)
-
+    const newArray = arrayMove(data, from, to)
+    const stringifyData = JSON.stringify(newArray)
     fs.writeFileSync(dataPath, stringifyData)
 }
 
 //insert old item to new position 
-export function arrayMove(arr:Array<DriverModel>, old_index : number, new_index : number) {
+export function arrayMove(arr: Array<DriverModel>, old_index: number, new_index: number) {
     if (new_index >= arr.length) {
         var k = new_index - arr.length + 1;
         while (k--) {
@@ -58,5 +57,5 @@ export function arrayMove(arr:Array<DriverModel>, old_index : number, new_index 
 
 //Order items by position
 const orderByPosition = (data: Array<DriverModel>) => {
-    return data.sort((a,b) => (a as Driver).place > (b as Driver).place ? 1 : -1)
+    return data.sort((a, b) => (a as Driver).place > (b as Driver).place ? 1 : -1)
 }

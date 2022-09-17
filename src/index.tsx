@@ -1,9 +1,9 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools'
+import { AppRoutes } from './app/routing/AppRoute';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,7 +12,8 @@ const root = ReactDOM.createRoot(
 const queryClient = new QueryClient();
 root.render(
   <QueryClientProvider client={queryClient}>
-    <App />
+    <AppRoutes />
+    <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>
 );
 
