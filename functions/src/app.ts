@@ -1,12 +1,18 @@
 // Server Setup
 import 'express-async-errors';
 import { json } from 'body-parser';
-import * as express from 'express'
-const cors = require('cors')({origin: true});
-const app = express();
+import * as express from 'express';
+import { getDrivers } from './routes/get-drivers';
+
+const cors = require('cors')({ origin: true });
+const app: express.Application = express();
 
 app.use(json());
 app.use(cors);
+
+
+
+app.use(getDrivers);
 app.get('/', (req, res) => res.status(200).send('Hey there!'))
 
 export { app };

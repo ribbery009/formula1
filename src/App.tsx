@@ -6,7 +6,7 @@ function App() {
 
   useEffect(() => {
 
-    axios.get('http://localhost:3005',)
+    axios.get('http://localhost:3005/api/drivers',)
       .then(response => {
         console.log("RESPONSE: ", response)
       }, error => {
