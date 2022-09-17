@@ -14,7 +14,7 @@ import ReactCountryFlag from "react-country-flag"
 import { useQueryResponseDrivers, useQueryResponseDriversData, useQueryResponseDriversLoading } from "../core/QueryResponseProvider";
 import { overtake } from "../core/_requests";
 import { Loading } from "../components/loading/loading";
-
+import cupIcon from '../../../../_formula1Page/asset/img/cup.svg'
 // a little function to help us with reordering the result
 const reorder = (
     list: DriverModel[],
@@ -39,6 +39,8 @@ const getItemStyle = (
     padding: grid * 2,
     margin: `0 0 ${grid}px 0`,
     boxShadow: "0 0 20px rgb(30 31 45 / 15%)",
+    position:"relative",
+    paddingBottom:20,
     // styles we need to apply on draggables
     ...draggableStyle
 });
@@ -94,6 +96,7 @@ export function Dashboard(): JSX.Element {
                                 {drivers.map((item, index) => (
                                     <Draggable key={item.id} draggableId={item.id + ""} index={index}>
                                         {(provided, snapshot): JSX.Element => (
+
                                             <div
                                                 ref={provided.innerRef}
                                                 {...provided.draggableProps}
@@ -102,11 +105,11 @@ export function Dashboard(): JSX.Element {
                                                     snapshot.isDragging,
                                                     provided.draggableProps.style
                                                 )}
+                                                className={`${index <10 && "point-positions"}`}
                                             >
                                                 <div className='d-flex align-items-center mb-7'>
 
                                                     {/* begin::Avatar */}
-
                                                     <div className='symbol symbol-50px me-5'>
                                                         <img src={toAbsoluteUrl(`/static/${item.code}.png`)} className='' alt='' />
                                                     </div>
@@ -128,7 +131,12 @@ export function Dashboard(): JSX.Element {
                                                     </div>
                                                 </div>
 
+                                                <div className='position'>
+                                                    position: <b>{index+1}</b>{index == 0 && <img className={"winner"} src={cupIcon}></img>}
+                                                </div>
                                             </div>
+
+
                                         )}
                                     </Draggable>
                                 ))}

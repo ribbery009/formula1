@@ -106,3 +106,15 @@ height: 50px;
   background-position: center center;
   background-size: cover;
 }
+
+.position{
+  opacity: .7;
+}
+
+.winner{
+  width:25px
+}
+
+.point-positions{
+  background-color: #98FF98;
+}
