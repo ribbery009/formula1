@@ -1,4 +1,4 @@
-export interface DriverModel {
+export interface Driver {
     id: undefined | null | number
     code: string
     firstname: string
@@ -7,6 +7,8 @@ export interface DriverModel {
     team: string
     place: number
   }
+
+  export type DriverModel = Driver | {} | undefined;
 
   export const defaultDrivers: Array<DriverModel> = [
     {
