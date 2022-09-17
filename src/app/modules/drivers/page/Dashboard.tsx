@@ -105,7 +105,7 @@ export function Dashboard(): JSX.Element {
                                                     snapshot.isDragging,
                                                     provided.draggableProps.style
                                                 )}
-                                                className={`${index <10 && "point-positions"}`}
+                                                className={`positions ${index <10 && "point-positions"}`}
                                             >
                                                 <div className='d-flex align-items-center mb-7'>
 
